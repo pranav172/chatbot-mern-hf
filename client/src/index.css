@@ -1,0 +1,354 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Example modern font */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f2f5; /* Lighter grey background */
+  color: #1c1e21; /* Darker default text */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* App Layout Wrappers */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex-grow: 1; /* Allows main content to push footer down */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align container top */
+  padding-top: 2rem;
+  padding-bottom: 2rem; /* Add padding at bottom too */
+}
+
+/* Main Container (Used by Chat and Auth pages) */
+.container {
+  width: 100%; /* Allow shrinking */
+  max-width: 700px; /* Default max-width (for chat) */
+  margin: 0 auto; /* Center horizontally */
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box; /* Include padding in width/height calculations */
+}
+
+/* Specific styles for the container on Auth pages */
+/* Remember to add class="container auth-container" in LoginPage.js/SignupPage.js */
+.auth-container {
+  max-width: 450px; /* Smaller width for auth forms */
+  height: auto; /* Height based on content */
+  margin-top: 4rem; /* More space from top */
+  padding: 2.5rem 3rem; /* Generous padding for forms */
+  overflow: visible; /* Override chat's overflow:hidden */
+}
+
+/* Styles for the container on the Chat page (HomePage) */
+/* Add class="container chat-page-container" in HomePage.js if needed, or rely on defaults */
+.chat-page-container {
+   max-width: 700px;
+   height: 85vh; /* Fixed height for chat */
+   padding: 0; /* Remove padding if navbar/input handle it */
+   overflow: hidden; /* Keep overflow hidden for chat layout */
+}
+/* Adjust H2 title spacing (mainly for Auth pages) */
+.container h2,
+.auth-container h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 2rem; /* Space below title */
+    color: #333;
+    font-weight: 600;
+}
+/* If chat page also has an H2, you might need to style it separately */
+.chat-page-container h2 {
+    padding: 1.5rem 1.5rem 0 1.5rem; /* Add padding if needed */
+    margin-bottom: 1rem; /* Adjust spacing */
+    text-align: left; /* Align chat title left */
+    font-size: 1.5rem;
+}
+
+
+/* --- Navbar Styles --- */
+nav {
+  background-color: #4a90e2; /* Example blue */
+  color: white;
+  padding: 0.8rem 1.5rem;
+  /* Apply radius only if container doesn't have padding:0 */
+  /* border-top-left-radius: 12px; */
+  /* border-top-right-radius: 12px; */
+  flex-shrink: 0;
+}
+/* Apply radius to container if chat page has padding: 0 */
+.chat-page-container nav {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+nav li {
+  margin-left: 1.2rem;
+}
+
+nav span { /* Welcome message */
+    margin-right: 1rem;
+    font-weight: 500;
+}
+
+nav a, nav button {
+  color: white;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 0.3rem 0;
+  font-family: inherit;
+}
+
+nav a:hover, nav button:hover {
+  color: #d0e1f9;
+  text-decoration: none;
+}
+
+
+/* --- Auth Form Styles --- */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #4b4f56;
+}
+
+/* Specific Input styling for Auth Forms */
+.auth-container input[type="text"],
+.auth-container input[type="email"],
+.auth-container input[type="password"] {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ccd0d5;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+.auth-container input[type="text"]:focus,
+.auth-container input[type="email"]:focus,
+.auth-container input[type="password"]:focus {
+   outline: none;
+   border-color: #4a90e2;
+   box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.25);
+}
+
+.error-message {
+    color: #a94442;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.auth-container form button[type="submit"] {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    margin-top: 1rem; /* Space above button */
+    border-radius: 6px; /* Match input radius */
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.auth-container form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+.auth-container form button[type="submit"]:disabled {
+     background-color: #cccccc;
+     cursor: not-allowed;
+}
+
+
+.auth-links {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+.auth-links a {
+    color: #4a90e2;
+    text-decoration: none;
+    font-weight: 500;
+}
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+
+/* --- Chat Specific Styles --- */
+.chat-window { /* Message display area */
+  flex-grow: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  background-color: #ffffff;
+  border: none;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-list {
+  flex-grow: 1;
+}
+
+/* Individual message bubbles */
+.message {
+  margin-bottom: 0.2rem;
+  padding: 0.7rem 1.1rem;
+  border-radius: 18px;
+  max-width: 75%;
+  word-wrap: break-word;
+  line-height: 1.4;
+  position: relative;
+}
+.message.user + .message.bot,
+.message.bot + .message.user {
+    margin-top: 1rem;
+}
+
+.message.user {
+  background-color: #007bff;
+  color: white;
+  margin-left: auto;
+  border-bottom-right-radius: 6px;
+}
+
+.message.bot {
+  background-color: #e4e6eb;
+  color: #050505;
+  margin-right: auto;
+  border-bottom-left-radius: 6px;
+}
+
+.message p {
+    margin: 0;
+}
+.message-timestamp {
+    font-size: 0.7rem;
+    display: block;
+    margin-top: 0.3rem;
+    text-align: right;
+}
+.message.user .message-timestamp {
+    color: #e0e0e0;
+}
+.message.bot .message-timestamp {
+     text-align: left;
+     color: #65676b;
+}
+
+/* Input Area */
+.message-input {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #dadde1;
+  background-color: #f0f2f5;
+  flex-shrink: 0;
+}
+
+.message-input form {
+    display: flex;
+    align-items: center;
+}
+
+.message-input input {
+    flex-grow: 1;
+    border: 1px solid #ccd0d5;
+    border-radius: 20px;
+    padding: 0.7rem 1.1rem;
+    font-size: 0.95rem;
+    margin-right: 0.75rem;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+.message-input input:focus {
+     outline: none;
+     border-color: #007bff;
+     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+ }
+
+.message-input button {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+}
+.message-input button::after {
+    content: '➤'; /* Placeholder arrow */
+    display: inline-block;
+    line-height: 1;
+}
+.message-input button:hover {
+    background-color: #0056b3;
+}
+.message-input button:disabled {
+    background-color: #ccd0d5;
+    cursor: not-allowed;
+}
+.message-input button:disabled::after {
+     color: #a0a0a0;
+}
+
+/* --- Footer --- */
+.app-footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.8rem;
+    color: #666;
+    background-color: #f0f2f5;
+    flex-shrink: 0;
+}
+
+/* --- Loading Spinner Alignment in Chat --- */
+.chat-window .spinner-container {
+    justify-content: flex-start;
+    padding: 0 0 0 1rem;
+    height: 30px;
+}
+.chat-window .spinner-container.small .loading-spinner {
+    width: 20px;
+    height: 20px;
+    border-width: 3px;
+}
